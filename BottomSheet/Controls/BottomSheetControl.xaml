@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BottomSheet.Controls"
+             x:Class="BottomSheet.Controls.BottomSheetControl"
+             x:Name="BottomSheetRef"
+             InputTransparent="True">
+
+    <ContentView.Content>
+        <Grid>
+
+            <BoxView Color="Black"
+                 Opacity="0"
+                 InputTransparent="True"
+                 x:Name="Backdrop">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <controls:PanContainer x:Name="PanContainerRef"
+                                   HeightRequest="{Binding SheetHeight, Source={x:Reference BottomSheetRef}}"
+                                   VerticalOptions="End">
+                <controls:PanContainer.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"/>
+                </controls:PanContainer.GestureRecognizers>
+                <Frame x:Name="Sheet"
+                   Content="{Binding SheetContent ,Source={x:Reference BottomSheetRef}}"
+                   HeightRequest="{Binding SheetHeight, Source={x:Reference BottomSheetRef}}"
+                   VerticalOptions="End"
+                   BackgroundColor="White"
+                   CornerRadius="5"
+                   HasShadow="False">
+                </Frame>
+            </controls:PanContainer>
+
+        </Grid>
+    </ContentView.Content>
+
+</ContentView>
+

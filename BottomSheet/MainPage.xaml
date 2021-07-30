@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BottomSheet.Controls"
+             xmlns:viewmodel="clr-namespace:BottomSheet"
+             x:Class="BottomSheet.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid HorizontalOptions="Center">
+                <Button Text="Tap Me!" Clicked="Button_Clicked" VerticalOptions="Center"/>
+            </Grid>
+
+            <controls:BottomSheetControl x:Name="Sheet"
+                                         SheetHeight="300">
+                <controls:BottomSheetControl.SheetContent>
+                    <StackLayout>
+
+                        <OnPlatform x:TypeArguments="View">
+                            <On Platform="iOS">
+                                <Grid>
+                                    <BoxView CornerRadius="2.5"
+                                     BackgroundColor="Gray"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Start"
+                                     HeightRequest="5"
+                                     WidthRequest="40"/>
+                                </Grid>
+                            </On>
+                            <On Platform="Android">
+                                <Grid>
+                                    <Image Source="chevrondown"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Start"
+                                    WidthRequest="40"/>
+                                </Grid>
+                            </On>
+                        </OnPlatform>
+
+                        <Label HorizontalTextAlignment="Center"
+                           Margin="0,20"
+                           Text="Welcome to Xamarin how to"
+                           FontSize="18"/>
+
+                        <Image Source="xhtlogo" HorizontalOptions="Center"/>
+
+                    </StackLayout>
+                </controls:BottomSheetControl.SheetContent>
+            </controls:BottomSheetControl>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
